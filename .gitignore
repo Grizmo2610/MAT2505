@@ -1,0 +1,35 @@
+bin/
+target/
+out/
+lib/
+*.class
+
+### IntelliJ IDEA ###
+.idea/
+*.iml
+*.iws
+logs/
+hs_err_pid*
+
+### VS Code ###
+.vscode/
+*.code-workspace
+
+# Maven
+.mvn/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+
+# Gradle
+.gradle/
+build/
+!gradle-wrapper.jar
+.gradle-cache/
+gradle-app.setting
+
+# Tệp môi trường
+.env
+*.env.local
