@@ -26,6 +26,8 @@ public class Distance {
 
 ```
 
+---
+
 # **2. Bài lập trình Three Sort**
 
 ## **Đề bài**
@@ -68,6 +70,7 @@ public class ThreeSort {
 
 * **Tìm số đứng giữa**: Sau khi có 2 số lớn nhất và bé nhất, ta sẽ cộng tổng ba số này lại ta được `a + b + c = max + min + mid` (với `max` là số lớn nhất, `min` là số bé nhất và `mid` là số ở giữa). Đổi về và ta được công thức: `mid = a + b + c - min - max`
 
+---
 
 # **3. Đổi độ dài từ km sang dặm**
 ## **Đề bài**
@@ -92,6 +95,8 @@ public class ConvertUnit2 {
 
 Ta có công thức $1 \text{ mile} = 1609 \text{ m} = 1.609 \text{ km}$. $\Rightarrow$ $1 \text{ km} = 1/1609 \text{ mile}$
 
+---
+
 # **4. Đổi nhiệt độ từ thang Celsius sang thang Fahrenheit**
 ## **Đề bài**
 Viết chương trình ConvertUnit3.java cho phép nhập một số thực `x` qua đối dòng lệnh, sau đó coi `x` là nhiệt độ Celsius, in ra số đo `y` của nhiệt độ đó tính theo thang Fahrenheit theo công thức: 
@@ -114,8 +119,7 @@ public class ConvertUnit3{
 }
 ```
 
-## **Giải thích**
-
+---
 
 
 # **5. Tính thời gian di chuyển trong chuyển động nhanh dần đều**

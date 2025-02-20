@@ -19,6 +19,8 @@ public class HelloWorld{
 }
 ```
 
+---
+
 # **2. Tính trung bình cộng 03 số thực**
 Chương trình cho phép nhận 03 số thực từ đối dòng lệnh (command line arguments) và tính trung bình cộng của chúng.
 
@@ -51,6 +53,8 @@ public class AverageThree {
 }
 ```
 
+---
+
 # **3. Kiểm tra 3 giá trị bằng nhau hay không**
 
 Viết chương trình cho phép đọc 3 tham số từ đối dòng lệnh và trả về kết quả là true nếu 3 giá trị bằng nhau và là false nếu ngược lại.
@@ -71,6 +75,8 @@ class TripleEquals {
 	}
 }
 ```
+
+---
 
 # 4. Bài tập đổi đơn vị
 Viết chương trình `ConvertUnit1.java` cho phép nhập một số thực `x` qua đối dòng lệnh, sau đó coi `x` là chiều dài tính bằng **mét**, hãy in ra số đo `y` của chiều dài đó tính bằng **inches**.
