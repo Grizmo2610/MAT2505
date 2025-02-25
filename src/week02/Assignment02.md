@@ -121,7 +121,6 @@ public class ConvertUnit3{
 
 ---
 
-
 # **5. Tính thời gian di chuyển trong chuyển động nhanh dần đều**
 ## **Đề bài**
 Quãng đường S đi được trong chuyển động nhanh dần đều tính theo công thức: $S = v_0 \times t + a\times t\times t/2$, với $v_0$ là vận tốc ban đầu, $t$ là thời gian đi và $a$ là gia tốc.
@@ -184,3 +183,143 @@ Thế vào phương trình $f(t) = 0$ ta có thể tính $\Delta$ (`delta`) và 
 Sử dụng câu lệnh `Math.sqrt(x)` để tính căn bậc 2 của số `x`.
 
 Ta kiểm tra lần lượt xem `t1 > 0` hay không? Nếu có thì in ra `t1`, nếu không ta chuyển sang so sánh `t2`. Nếu `t2 > 0`  thì in ra `t2` nếu `t2 < 0` thì in ra `-1`.
+
+---
+
+# **6. Kiểm tra ba số có tạo thành ba cạnh của tam giác hay không**
+
+## **Đề bài:**
+
+Hoàn thiện phương thức `isTriangle (double a, double b, double c)` cho trong tệp RightTriangle cho phép kiểm tra xem ba số thực có tạo thành ba cạnh của tam giác hay không? Hàm này trả về kết quả true nếu ba số a, b, c tạo thành ba cạnh của tam giác, trả về kết quả false nếu ngược lại
+
+```java
+class RightTriangle{
+    
+    static boolean isTriangle(double a, double b, double c){
+        // begin edit 
+        
+        //end edit
+    }
+    public static void main (String args[]){
+        
+    }
+}
+```
+
+## **Lời giải**
+
+```java
+public class RightTriangle{
+    static boolean isTriangle(double a, double b, double c){
+        // begin edit 
+        if( a>0 && b>0 && c>0 && a+b > c && a+c>b && b+c>a ) {
+			return true;
+        } else {
+			return false;
+        }
+        //end edit
+    }
+    public static void main (String args[]){
+        double a = Double.parseDouble (args[0]);
+		double b = Double.parseDouble (args[1]);
+		double c = Double.parseDouble (args[2]);
+		boolean check = isTriangle(a,b,c);
+		System.out.println(check);
+		if (check == true){
+			System.out.println("la mot tam giac");
+        } else {
+			System.out.println("khong phai la mot tam giac");
+		}
+    }
+}
+```
+
+---
+
+# **7. Tính diện tích tam giác**
+
+## **Đề bài**
+
+Hoàn thiện phương thức `getArea (double a, double b, double c)`  cho trong lớp `Triangle`. 
+
+Phương thức này cho phép tính diện tích tam giác tạo bởi ba số thực `a, b, c` (nếu có). Ngược lại, nếu `a, b, c` không tạo thành ba cạnh của tam giác. Phương thức này trả về `0`
+
+```java
+public class Triangle{
+    static double getArea(double a, double b, double c){
+         
+    }
+    public static void main(String [] args){
+        
+    }
+}
+```
+
+## **Lời giải:**
+
+```java
+class Triangle{
+    static double getArea(double a, double b, double c) {
+        if( a>0 && b>0 && c>0 && a+b > c && a+c>b && b+c>a ) {
+			double p = (a + b +c) / 2;
+			return Math.sqrt( p * ( p - a ) * ( p - b ) * ( p - c ));
+        } else { 
+            return 0; 
+        }
+}
+    public static void main(String [] args){
+        double a = Double.parseDouble (args[0]);
+		double b = Double.parseDouble (args[1]);
+		double c = Double.parseDouble (args[2]);  
+        System.out.println(getArea(a,b,c));
+    }
+}
+```
+
+---
+
+
+# **8. Tính tổng các số nguyên dương chẵn nhỏ hơn n**
+
+## **Đề bài:**
+Viết chương trình nhập số nguyên  n từ đối dòng lệnh.
+Tính tổng các giá trị là số chẵn nhỏ hơn n.
+Ví dụ `n = 10`
+
+kết quả là `20 = 0 + 2 + 4 + 6 +8`
+
+ví dụ chạy chương trình:
+
+```bash
+java SumEven 10
+```
+
+Kết quả in ra màn hình là 
+
+```
+20
+```
+
+**Gợi ý**, sử dụng vòng lặp `for`, mỗi bước tăng 2 đơn vị 
+
+## **Lời giải:**
+
+```java
+public class SumEven {
+    public static void main(String[] args) {
+        int n = Integer.parseInt(args[0]);
+        int sum = 0;
+        for (int i = 2; i < n; i +=2){
+            sum += i;
+        }
+        System.out.println(sum);
+    }
+}
+```
+## **Giải thích:**
+
+* Sử dụng `Integer.parseInt(args[0])` để ép kiểu dữ liệu về số nguyên. 
+
+* Ta khởi tạo một biến `sum` để lưu trữ kết quả của việc tính tổng. Ta gán giá trị ban đầu là `0` để khi thực hiện tính toán sẽ không bị ảnh hưởng bởi giá trị khởi tạo ban đầu (Nếu khởi tạo `sum = x` thì kết quả sau sẽ bị lệch đi `x`).
+
+* Sử dụng vòng lặp `for`, ta khởi tạo `int i = 2` (số chẵn nhỏ nhất lớn hơn `0`) và chạy cho tới khi `i < n` (Duyệt hết tất cả các số bé hơn `n`) đồng thời ta cho bước nhảy là `i += 2` (vì các số chẵn cách nhau đúng 2 đơn vị). Tại mỗi bước lặp ta sẽ lấy `sum + i` sau đó gán lại vào `sum` $\rightarrow$ `sum = sum + i` hoặc viết ngắn gọn sẽ thành `sum += i`.
