@@ -25,13 +25,14 @@ Toàn bộ mã nguồn của từng tuần sẽ có trong thư mục `src`. Mỗ
 🗂 **Cấu trúc thư mục:**  
 
 ```
+📁 /docs
+ ├──Assignment01.md  # File giải thích chi tiết bài làm
+ |
 📁 /src
  ├── 📂 week01   # Thư mục tương ứng với tuần 01
- │    ├── 📄 Assignment01.md  # File giải thích chi tiết bài làm
  │    ├── 📄 HelloWorld.java   # Mã nguồn chương trình
  │
  ├── 📂 week02   # Thư mục tương ứng với tuần 02
- │    ├── 📄 Assignment02.md
  │    ├── 📄 SomeProgram.java
  │
  └── ...
