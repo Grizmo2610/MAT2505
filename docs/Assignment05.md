@@ -576,26 +576,210 @@ Xem thêm tại:
 
 # **7. Phân loại phần tử mảng**
 ## **Đề bài**
+Viết chương trình cho phép nhập một số nguyên dương `n`, và một mảng gồm `n` phần tử nguyên. Sau đó viết hàm/phương thức 
+để xếp tất cả các phần tử giá trị lẻ về đầu mảng, các phần tử giá trị chẵn về cuối mảng. Thứ tự xuất hiện các giá trị 
+trong mỗi nhóm cần được giữ nguyên.
+
+In mảng kết quả ra màn hình trên một dòng, các giá trị cách nhau bởi 01 khoảng trống.
+Ví dụ:
+
+Đầu vào
+```
+10
+
+1 24 7 13 20 14 37 0 12 8
+```
+Cần có đầu ra:
+```
+1 7 13 37 24 20 14 0 12 8
+```
+* GroupArray.java
+```java
+/**
+ * chương trình nhập số nguyên n và mảng gồm n số nguyên
+ * hàm/phương thức groupArray xếp số lẻ về đầu, số chẵn về cuối mảng
+ * Bổ sung thêm các hàm/phương thức khác nếu cần
+ * */
+ 
+public class GroupArray{
+    
+    // Định nghĩa hàm/phương thức groupArray() ở đây
+    // .....  groupArray(.....)
+    
+    public static void main(String args[]){
+        
+        // ... editing 
+    }
+}
+```
 
 ---
 
 ## **Lời giải**
+```java
+import java.util.Scanner;
 
+public class GroupArray{
+
+   public static int[] groupArray(int[] arr){
+      int[] groupArray = new int[arr.length];
+      int index = 0;
+      for (int number: arr){
+         if (number % 2 != 0){
+            groupArray[index] = number;
+            index++;
+         }
+      }
+      for (int number: arr){
+         if (number % 2 == 0){
+            groupArray[index] = number;
+            index++;
+         }
+      }
+
+      return groupArray;
+   }
+
+   public static void printArray(int[] array){
+      for (int number: array){
+         System.out.print(number + " ");
+      }
+      System.out.println();
+   }
+
+   public static int[] readArray(Scanner reader) {
+      int n = reader.nextInt();
+      int[] a = new int[n];
+
+      for (int i = 0; i < n; i++){
+         a[i] = reader.nextInt();
+      }
+      return a;
+   }
+
+   public static void main(String[] args){
+      Scanner reader = new Scanner(System.in);
+      int[] array = readArray(reader);
+      reader.close();
+      printArray(groupArray(array));
+   }
+}
+```
 ---
 
 ## **Giải thích**
+
+Ta khởi tạo 1 mảng chứa kết quả cùng kiểu dữ liệu và cùng kích thước với mảng gốc. Đồng thời tạo thêm 1 biến `index` để
+làm con trỏ (Vị trí hiện tại trong mảng gốc) để gán giá trị vào vị trí tương ứng.
+
+Ta sẽ duyệt 2 lần. 1 lần đầu tiên là sẽ xếp hết các phần tử lẻ vào mảng theo thứ tự. Đồng thời mỗi lần gán giá trị ta sẽ
+tăng `index` lên 1. (Lưu ý chỉ tăng khi gán). Việc này tương đương ới việc đánh dấu ô đã được sử dụng và ta tiến tới ô
+gán ở ô tiếp theo. Cứ thế lặp lại đến giá trị cuối.
+
+Tại lần lặp thứ 2. Ta tìm các biến chẵn sau đấy làm tương tự. Chỉ khác lúc này chúng ta không gán `index = 0` nữa mà tiếp 
+tục thực hiện vì giá trị lúc này đã là tại phần tử trống tiếp theo. 
 
 ---
 
 # **8. Đếm số lần xuất hiện của mỗi giá trị trong mảng**
 ## **Đề bài**
+Viết chương trình cho phép nhập một số nguyên dương `n` và một mảng `A` gồm `n` số nguyên.
+
+Đếm và in ra số lần xuất hiện của mỗi giá trị có mặt trong mảng `A` (không lặp lại).
+
+Kết quả cần in ra trên một dòng, mỗi cặp giá trị - số lần sẽ theo quy tắc: <giá trị>:<số lần xuất hiện> (được viết sát 
+nhau) và giữa các cặp này sẽ cách nhau bởi 01 khoảng trống. Thứ tự xuất hiện của các cặp sẽ theo thứ tự giá trị xuất 
+hiện trong mảng (giá trị nào xuất hiện trong mảng trước thì cặp giá trị - số đếm sẽ được in ra trước). Các được in ra 
+giá trị không lặp lại.
+
+Ví dụ đầu vào:
+```
+n = 10;
+
+A = {2, 3, 2, 7, 1, 2, 3, 7, 7, 2}
+```
+thì cần in ra:
+```
+2:4 3:2 7:3 1:1
+```
+Hướng dẫn (có thể chọn cách khác nếu cho kết quả đúng):
+
+- Sử dụng cách xóa các giá trị lặp trong mảng `A` để thu được mảng mới `B` chỉ còn toàn các giá trị khác nhau
+
+- Duyệt mảng `B`, ứng với phần từ `B[k]`, duyệt mảng `A`, mỗi lần gặp giá trị bằng `B[k]` thì đếm thêm 1. Trả lại các 
+số đếm trong một mảng hoặc in ra theo đúng yêu cầu.
 
 ---
 
 ## **Lời giải**
+```java
+package week05;
 
+import java.util.Scanner;
+
+public class Countvalues{
+    public static void printArray(int[] array){
+        for (int number: array){
+            System.out.print(number + " ");
+        }
+        System.out.println();
+    }
+
+    public static int[] readArray(Scanner reader) {
+        int n = reader.nextInt();
+        int[] a = new int[n];
+
+        for (int i = 0; i < n; i++){
+            a[i] = reader.nextInt();
+        }
+        return a;
+    }
+
+   public static void process(int[] A){
+      StringBuilder result = new StringBuilder();
+      int n = A.length;
+      boolean[] counted = new boolean[n];
+
+      for (int i = 0; i < n; i++) {
+         if (counted[i]) {
+            continue;
+         }
+
+         int value = A[i];
+         int count = 1;
+
+         for (int j = i + 1; j < n; j++) {
+            if (A[j] == value) {
+               count++;
+               counted[j] = true;
+            }
+         }
+         result.append(value).append(":").append(count).append(" ");
+      }
+      System.out.println(result);
+   }
+
+    public static void main(String[] args) {
+        Scanner reader = new Scanner(System.in);
+        int[] A = readArray(reader);
+        reader.close();
+        process(A);
+    }
+}
+```
 ---
 
 ## **Giải thích**
 
+Ta sẽ khởi tạo một mảng `boolean[] counted` để kiểm tra xem các `index` đã được đếm hay chưa. Mảng này sẽ có kích thươớc
+tương đương với mảng gốc. Ta sẽ bắt đầu vòng lặp qua mảng A. Lần lượt kiểm tra xem phần tử `A[i]` đã được đếm chưa bằng
+cách kiểm tra `counted[i]` nếu đã được đếm, ta cùng `continue` để bỏ qua các câu lệnh phía bên dưới.
+
+Nếu chưa được đếm, ta sẽ khởi tạo biến `count = 1` để bắt đầu đếm. Sau đấy ta chỉ cần đếm các phần tử còn lại trong mảng(
+bắt đầu từ `i+1` vì ta đã khởi tạo `count = 1` nên bỏ qua phần tử tại vị trí `i`) Ta không kiểm tra các phần tử phía bên
+trái vì chắc chắc các phần tử khác `A[i]` (Vì nếu có phần tử giống `A[i]` thì `counted[i]==true`). Mỗi khi gặp các phần
+tử `A[j]` == `A[i]` thì sẽ tăng `count` lên 1 và đồng thời gán `counted[j] =true` biểu thì việc đã đếm.
+
+Sau cùng ta sử dụng `StringBuilder` để hiển thị kết quả (Tránh bị khoảng trắng cuối). Sử dụng phương thức `append()`
+để thêm phần tử vào phía sau. Lưu ý thêm khoảng trắng sau mỗi cặp `<value>:<count>`
 ---
