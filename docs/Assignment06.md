@@ -519,7 +519,58 @@ Ouput:
 ---
 
 ## Lời giải
+```java
+import java.util.Scanner;
 
+public class TimesMatrix {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int rows = scanner.nextInt();
+        int columns = scanner.nextInt();
+        int[][] matrixA = inputMatrix(rows, columns, scanner);
+        int[][] matrixB = inputMatrix(columns, rows, scanner);
+        int[][] matrixC = multiplyMatrices(matrixA, matrixB, rows, columns, rows);
+        printMatrix(matrixC);
+
+        scanner.close();
+    }
+
+
+    public static int[][] inputMatrix(int rows, int cols, Scanner scanner) {
+        int[][] matrix = new int[rows][cols];
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                matrix[i][j] = scanner.nextInt();
+            }
+        }
+        return matrix;
+    }
+
+
+    public static int[][] multiplyMatrices(int[][] A, int[][] B, int rA, int cA, int cB) {
+        int[][] result = new int[rA][cB];
+        for (int i = 0; i < rA; i++) {
+            for (int j = 0; j < cB; j++) {
+                for (int k = 0; k < cA; k++) {
+                    result[i][j] += A[i][k] * B[k][j];
+                }
+            }
+        }
+        return result;
+    }
+
+
+    public static void printMatrix(int[][] matrix) {
+        for (int[] row : matrix) {
+            for (int value : row) {
+                System.out.print(value + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+```
 
 ---
 
@@ -527,9 +578,224 @@ Ouput:
 
 ---
 
-#
+# Bài tập mảng 2 chiều
 ## Đề bài
+Hoàn thiện các hàm trong chương trình theo mẫu đã cho, thực hiện các công việc sau:
 
+- Nhập vào kích thước ma trận. Nhập vào các phần tử của ma trận theo kích thước đã cho. In ra ma trận đã nhập.
+
+- Nhập vào kích thước ma trận. Nhập vào 2 ma trận. In ra ma trận là tổng của 2 ma trận đã nhập.
+
+- Nhập vào kích thước ma trận. Nhập vào các phần tử của ma trận. In ra tổng của các cột của ma trận đã nhập.
+
+- Nhập vào kích thước ma trận. Nhập vào các phần tử của ma trận. Xóa một cột của ma trận và in ra ma trận kết quả.
+
+- Nhập vào kích thước ma trận. Nhập vào các phần tử của ma trận. In ra ma trận tam giác trên của ma trận đã nhập.
+
+- Nhập vào kích thước ma trận. Nhập vào các phần tử của ma trận. In ra theo thứ tự tăng dần các phần tử là số nguyên tố nằm trong ma trận tam giác trên của ma trận đã nhập.
+
+**Matrix.java**
+```java
+import java.util.Random;
+import java.util.Scanner;
+
+
+public class Matrix {
+
+  public static void main(String[] args) {
+      
+      /* TODO */
+  
+      
+  }
+  
+  /* Method to generate random matrix, used to test program */
+  public static int[][] generateMatrix(int rows, int columns) {
+    if ((rows <= 0) || (columns <= 0)) {
+      return null;
+    }
+    
+    Random randomGenerator = new Random();
+    int[][] newMatrix = new int[rows][columns];
+    for (int i = 0; i < rows; i++) {
+      for (int j = 0; j < columns; j++) {
+        newMatrix[i][j] = Math.abs(randomGenerator.nextInt()) % 100;
+      }
+    }
+    
+    return newMatrix;
+  }
+  
+  /* Method to check valid matrix */ 
+  public static boolean isValid(int[][] matrix) {
+    if ((matrix == null) || (matrix.length == 0) || (matrix[0].length ==0)) {
+      return false;
+    }
+    return true;
+  }
+  
+  /* Method to check valid array */
+  public static boolean isValid(int[] array) {
+    if ((array == null) || (array.length == 0)) {
+      return false;
+    }
+    
+    return true;
+  }
+
+  public static void inputMatrix(int[][] matrix, Scanner keyboard) {
+    if (!isValid(matrix)) {
+      return;
+    }
+    
+    /* TODO */
+  }
+
+  public static int[][] inputMatrix(int rows, int columns, Scanner keyboard) {
+    if ((rows <= 0) || (columns <= 0)) {
+      return null;
+    }
+    
+    /* TODO */
+  }
+  
+  /* Method to print a array */
+  public static void printArray(int[] array) {
+    if (!isValid(array)) {
+      return;
+    }
+    
+    StringBuilder arrayString = new StringBuilder();
+    for (int elem : array) {
+      arrayString.append(elem).append(" ");
+    }
+    System.out.print(arrayString.toString().trim());
+  }
+
+  /* Method to print a matrix (2d array) */
+  public static void printMatrix(int[][] matrix) {
+    if (!isValid(matrix)) {
+      return;
+    }
+
+    StringBuilder stringRow = new StringBuilder();
+    for (int[] row : matrix) {
+      stringRow.setLength(0);
+      for (int elem : row) {
+        stringRow.append(elem).append(" ");
+      }
+      System.out.println(stringRow.toString().trim());
+    }
+  }
+  
+  /* Method to add 2 matrices */
+  public static int[][] addMatrices(int[][] leftMatrix, int[][] rightMatrix) {
+    if ((!isValid(leftMatrix)) || (!isValid(rightMatrix))) {
+      return null;
+    }
+    
+    if ((leftMatrix.length != rightMatrix.length) 
+         || (leftMatrix[0].length != rightMatrix[0].length)) {
+      return null; 
+    }
+    
+    /* TODO */
+  }
+  
+  /* Method to sum columns of matrix */
+  public static int[] sumColumns(int[][] matrix) {
+    if (!isValid(matrix)) {
+      return null;
+    }
+    
+    /* TODO */
+  }
+  
+  /* Method to print sum of columns of matrix */
+  public static void printSumColumns(int[][] matrix) {
+    int[] sumArray = sumColumns(matrix);
+    printArray(sumArray);
+  }
+  
+  /* Method to delete a column of matrix */
+  public static int[][] deleteColumn(int[][] matrix, int index) {
+    if (!isValid(matrix)) {
+      return null;
+    }
+    
+    if ((index < 0) || (index >= matrix[0].length)) {
+      return matrix;
+    }
+    
+    if (matrix[0].length == 1) {
+      return null;
+    }
+    
+    /* TODO */
+  }
+  
+  /* Method to print the matrix having a column deleted */
+  public static void printDeleteColumnMatrix(int[][] matrix, int index) {
+    int[][] deleteMatrix = deleteColumn(matrix, index);
+    printMatrix(deleteMatrix);
+  }
+  
+  /* Method to get upper triangular matrix of a matrix */
+  public static int[][] getUpperTriangularMatrix(int[][] matrix) {
+    if (!isValid(matrix)) {
+      return null;
+    }
+    
+    if (matrix.length != matrix[0].length) {
+      return null;
+    }
+    
+    /* TODO */
+  }
+  
+  /* Method to print upper triangular matrix of a matrix */
+  public static void printUpperTriangularMatrix(int[][] matrix) {
+    int[][] upperTriangularMatrix = getUpperTriangularMatrix(matrix);
+    printMatrix(upperTriangularMatrix);
+  }
+  
+  /* Method to check if a number is a prime */
+  public static boolean isPrime(int number) {
+    /* TODO */
+  }
+  
+  /* Method to get all primes in upper triangular matrix of a matrix */
+  public static int[] getPrimesInUpperTriangularMatrix(int[][] matrix) {
+    /* TODO */
+  }
+  
+  /* Method to sort an array */
+  public static void sortArrayInAscendingOrderUsingSelectionSort(int[] array) {
+    if (!isValid(array)) {
+      return;
+    }
+
+    int temp;
+    int minIndex;
+    for (int i = 0; i < array.length - 1; i++) {
+      minIndex = i;
+      // find index of the smallest element
+      for (int j = i + 1; j < array.length; j++) {
+        if (array[j] < array[minIndex]) {
+          minIndex = j;
+        }
+      }
+
+      // swap the smallest element and ith element
+      if (minIndex != i) {
+        temp = array[i];
+        array[i] = array[minIndex];
+        array[minIndex] = temp;
+      }
+    }
+  }
+}
+```
 ---
 
 ## Lời giải
